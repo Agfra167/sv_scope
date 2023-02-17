@@ -1,0 +1,53 @@
+xrun: 20.09-s003: (c) Copyright 1995-2020 Cadence Design Systems, Inc.
+TOOL:	xrun	20.09-s003: Started on Feb 16, 2023 at 23:44:10 EST
+xrun
+	-Q
+	-unbuffered
+	-timescale 1ns/1ns
+	-sysv
+	test.c
+	-access +rw
+	design.sv
+	testbench.sv
+$CDSROOT = /xcelium20.09
+$TESTDIR = /home/runner
+
+TOOL:	xmsc	20.09-s003
+xmsc cc parameters: 
+	$CDSROOT/tools/cdsgcc/gcc/6.3/bin/gcc
+	-I$CDSROOT/tools/include
+	-I$CDSROOT/tools/inca/include 
+	-DXMSC
+	-DNCSC
+	-D_GLIBCXX_USE_CXX11_ABI=0 -c
+	-x c -m32  -Wall 
+
+xmsc: compiling $TESTDIR/test.c
+
+$TESTDIR/test.c: In function 'func_dpi':
+$TESTDIR/test.c:9:4: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+    exit(0);
+    ^~~~
+$TESTDIR/test.c:9:4: warning: incompatible implicit declaration of built-in function 'exit'
+$TESTDIR/test.c:9:4: note: include '<stdlib.h>' or provide a declaration of 'exit'
+$TESTDIR/test.c:6:16: warning: unused variable 's2' [-Wunused-variable]
+    svScope s1, s2;
+                ^~
+
+building library run.so
+
+	Top level design units:
+		top
+		$unit_0x4ccdf83b
+		top1
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+Loading snapshot worklib.top1:sv .................... Done
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /xcelium20.09/tools/xcelium/files/xmsimrc
+xcelium> run
+1
+
+ The scope is top::
+xmsim: *W,RNQUIE: Simulation is complete.
+xcelium> exit
+TOOL:	xrun	20.09-s003: Exiting on Feb 16, 2023 at 23:44:12 EST  (total: 00:00:02)
